@@ -1,0 +1,256 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/app.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>Registration Form - Assignment</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card mx-auto" style="width: 40rem;">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="registration-tab" data-toggle="tab" href="#registration"
+                            role="tab" aria-controls="registration" aria-selected="true">Regisration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab"
+                            aria-controls="login" aria-selected="false">Login</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="registration" role="tabpanel"
+                        aria-labelledby="nav-registration-tab">
+                        <h3 class="card-title text-center">Register</h3>
+                        <p class="card-text text text-center">Fill the Details...</p>
+                        <hr>
+                        <form id="regForm" method="post" action="{% url 'SignUpView' %}">
+                          {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-sm-6">
+                                    <div class="formg-roup">
+                                        <label>First Name</label>
+                                        <input type="text" name="fname" id="fname" class="form-control"
+                                            placeholder="Enter Your First Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="formg-roup">
+                                        <label>Last Name</label>
+                                        <input type="text" name="lname" id="lname" class="form-control"
+                                            placeholder="Enter Your Last Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="formg-roup">
+                                        <label>Email id:</label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="EnterEmail@email.com" required>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Select Your Institute</label>
+                                        <select class="form-control" id="institute">
+                                            <option>Select Institute</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radioBtn" id="radiostudent"
+                                            value="student">
+                                        <label for="">Student</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radioBtn" id="radiofeculty"
+                                            value="feculty">
+                                        <label for="">Feculty</label>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-6">
+                                    <div class="form-group">
+                                        <select class="form-control" id="course">
+                                            <option>Select Your Course</option>
+                                            <option>B.E</option>
+                                            <option>B.Tech</option>
+                                            <option>M.E</option>
+                                            <option>M.Tech</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <select class="form-control" id="semester">
+                                            <option>Select Semester</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <select class="form-control" id="discipline">
+                                            <option>Select discipline</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input type="date" class="form-control" name="dob" id="dob" required>
+                                    </div>
+                                </div> -->
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mobile Number</label>
+                                        <input type="tel" class="form-control" name="mobile" id="mobile" min="10"
+                                            max="10" placeholder="mobile number">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password" id="password"
+                                            placeholder="Enter Password" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <input type="password" class="form-control" name="confirmPassword"
+                                            id="confirmPassword" placeholder="Re-enter Password" required>
+                                        <span id="passError" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="nav-login-tab">
+                        <h3 class="card-title text-center">Login</h3>
+                        <hr>
+                        <form action="">
+                            <div class="form-group">
+                                <label>Enter User id</label>
+                                <input type="text" class="form-control" id="userid" placeholder="Your Email id"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Your Password</label>
+                                <input type="password" class="form-control" id="logpassword" placeholder="Your Password"
+                                    required>
+
+                                <span class="text-danger">Incorrect User id or Password</span>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-block">Login</button>
+                            <a href="#" class="text-danger" data-toggle="modal" data-target="#modalforgotpass">Forgot
+                                Password..?</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalforgotpass" tabindex="-1" role="dialog" aria-labelledby="modalforgotpasslabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalforgotpasslabel">Forgot Password..?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="forgotPassEmail">Enter Your Email id:</label>
+                            <input type="email" name="forgotemail" id="forgotemail" class="form-control"
+                                placeholder="EnterEmail@email.com" required>
+
+                            <span class="text-danger">Sorry Entered Email id does not Exist..!</span>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block">Send</button>
+
+                        <div class="alert alert-success" role="alert">
+                            Password Reset Link is sent to your Email id!
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        $(function () {
+            $('input:radio[name="radioBtn"]').change(function () {
+                if ($(this).val() == 'feculty') {
+                    $('#semester, #course').attr('disabled', true);
+                } else {
+                    $('#semester, #course').attr('disabled', false);
+                }
+            });
+        });
+
+        //document.getElementById('regForm').addEventListener('submit', validation);
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
